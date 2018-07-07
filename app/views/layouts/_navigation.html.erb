@@ -1,0 +1,15 @@
+<%# navigation styled for Bootstrap 4.0 %>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to "Finance Tracker", root_path, class: "navbar-brand" %>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+        <%= render 'layouts/navigation_links' %>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <%= render 'layouts/nav_links_for_auth' %>
+    </ul>
+  </div>
+</nav>
