@@ -81,3 +81,11 @@ section {
   @extend .btn-primary;
   @extend .btn-sm;
 }
+
+.results-block {
+  display: inline-block;
+  border:3px solid DarkGray;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: LightGray;
+}
