@@ -1,2 +1,18 @@
 <h1>My Portfolio</h1>
 
+<table class="table table-bordered">                         
+  <tr>                          
+    <th scope="col">Ticker</th>
+    <th scope="col">Name</th>
+    <th scope="col">Price</th>
+    <th scope="col"></th>
+  </tr>
+	<% current_user.stocks.each do |stock| %>     
+  <tr>
+    <td><%= stock.ticker %></td>  	
+    <td><%= stock.name %></td>  	
+    <td><%= stock.last_price %></td>  	
+    <td><%= link_to "Delete", stocks_remove_stock_from_portfolio_path(stock: stock.ticker, user: current_user.id), method: :post %></td>  	
+  </tr>
+<% end %>                        	
+</table> 

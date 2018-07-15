@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   get 'stocks/search'
   get 'users/my_portfolio'
   get 'welcome/index'
+  
+  post 'stocks/add'
+  post 'stocks/remove_stock_from_portfolio'
+
   devise_for :users
 
   root 'welcome#index'

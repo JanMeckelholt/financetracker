@@ -13,4 +13,5 @@
 	  <strong>Name: </strong> <%= @stock.name %>
 	  <strong>Price: </strong> <%= @stock.last_price %>
 	</div>
-<% end %>
+  <%= link_to "Add to portfolio", stocks_add_path(stock: @stock.ticker), method: :post, class: "btn btn-lg btn-success" %>
+ <% end %>
