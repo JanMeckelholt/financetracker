@@ -8,4 +8,9 @@ class User < ApplicationRecord
 has_many :user_stocks
 has_many :stocks, through: :user_stocks
 
+def full_name
+	return "#{first_name} #{last_name}" if (first_name || last_name)
+	"Anonymus" 
+end
+
 end
