@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def my_portfolio
-  #	@user_stocks = current_user.stocks
-  #	@user = current_user
+    @user_stocks = current_user.stocks
+    @user = current_user
   end
 
   def my_friends
@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 			redirect_to my_friends_path
 		end
 	end
+
 
 	def add_friend
 		friend = User.find_by_email(params[:friend_email])
@@ -40,11 +41,11 @@ class UsersController < ApplicationController
 
 
 	def show_friend
-		@friend = User.find(id: params[:friend])
+		@friend = User.find(params[:friend])
 	end
 
-	def search_friend
 
+	def search_friend
 	  if params[:friend_email].present?
 	    @friend = User.find_by_email(params[:friend_email].downcase)
 	    if @friend

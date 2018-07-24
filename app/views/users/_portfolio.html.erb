@@ -1,0 +1,21 @@
+<table class="table table-bordered">                         
+  <tr>                          
+    <th scope="col">Ticker</th>
+    <th scope="col">Name</th>
+    <th scope="col">Price</th>
+    <th scope="col"></th>
+  </tr>
+	<% portfolio.each do |stock| %>     
+  <tr>
+    <td><%= stock.ticker %></td>  	
+    <td><%= stock.name %></td>  	
+    <td><%= stock.last_price %></td>  
+    <% if user == current_user %>	
+      <td><%= link_to "Delete", stocks_remove_stock_from_portfolio_path(stock: stock.ticker, user: current_user.id), method: :post %></td>  	
+    <% else %>
+      <td><%= link_to "Add to my Portfolio", stocks_add_path(stock: stock.ticker), method: :post %></td> 
+    <% end %>
+
+  </tr>
+<% end %>                        	
+</table> 
