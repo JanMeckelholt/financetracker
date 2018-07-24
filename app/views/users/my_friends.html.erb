@@ -8,14 +8,16 @@
 	    <th scope="col">email</th>
 	    <th scope="col"></th>
 	  </tr>
-		<% @my_friends.eachs do |friend| %>      
+		<% @my_friends.each do |friend| %>      
 	  <tr>
-	    <td><%= friend.name %></td>  	
+	    <td><%= friend.full_name %></td>  	
 	    <td><%= friend.email %></td>  	
-	    <td><%= link_to "Delete", users_remove_friend(friend: friend.id), method: :post %></td>  	
+	    <td><%= link_to "Delete", users_remove_friend_path(friend: friend.id), method: :post %></td>  	
 	  </tr>
 	<% end %>                        	
 	</table> 
 <% else %> 
 	<h4>No friends yet!</h4>
-<% end %> 
+<% end %>
+
+<%= link_to "Search Friends", users_search_friend_path %>

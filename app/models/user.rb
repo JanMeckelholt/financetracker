@@ -11,8 +11,12 @@ has_many :friendships
 has_many :friends, through: :friendships
 
 def full_name
-	return "#{first_name} #{last_name}" if (first_name || last_name)
-	"Anonymus" 
+	if (first_name || last_name)
+	  return "#{first_name} #{last_name}" 
+	else
+		"Anonymus"
+	end
+
 end
 
 end
