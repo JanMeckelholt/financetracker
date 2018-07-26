@@ -26,6 +26,9 @@ class UsersController < ApplicationController
 		if friend == current_user
 			flash[:danger] = "You can not add yourself!"
 			redirect_to my_friends_path
+		elsif current_user.friend_with?(friend.id)
+			flash[:danger] = "You are already friends!"
+			redirect_to my_friends_path
 		else
 			new_friendship = Friendship.new(user: current_user, friend: friend)
 			if new_friendship.save

@@ -18,6 +18,10 @@ class User < ApplicationRecord
 		end 
 	end
 
+	def friend_with?(friend_id)
+		friendships.where(friend_id: friend_id).count > 0
+	end
+
 	def self.search_friends(search_input)
 		r = (search_by_field("email", search_input) + search_by_field("first_name", search_input) + search_by_field("last_name", search_input)).uniq
 		if r 
@@ -30,5 +34,7 @@ class User < ApplicationRecord
 	def self.search_by_field(fieldname, search_input)
 		r = where("#{fieldname} like?", "%#{search_input}%")
 	end
+
+
 
 end

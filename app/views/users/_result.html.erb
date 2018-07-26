@@ -22,7 +22,11 @@
       <td><%= friend.full_name %></td>    
       <td><%= friend.email %></td>    
       <td><%= link_to "Show", users_show_friend_path(friend_id: friend.id) %></td>    
-      <td><%= link_to "Add to My Friends", users_add_friend_path(friend_id: friend.id), method: :post %></td>    
+      <% if current_user.friend_with?(friend.id) %>    
+        <td><strong>You are friends</strong></td>
+      <% else %>
+        <td><%= link_to "Add to My Friends", users_add_friend_path(friend_id: friend.id), method: :post %></td>    
+      <% end %>          
     </tr>
   <% end %>                         
   </table> 
