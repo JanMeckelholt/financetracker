@@ -9,7 +9,7 @@
 
 
 
- <% if @friends  %>
+<% if @friends && @friends.size > 0  %>
   <table class="table table-bordered">                         
     <tr>                          
       <th scope="col">Name</th>
@@ -21,11 +21,11 @@
     <tr>
       <td><%= friend.full_name %></td>    
       <td><%= friend.email %></td>    
-      <td><%= link_to "Show", users_show_friend_path(friend: friend.id) %></td>    
-      <td><%= link_to "Add to My Friends", users_add_friend_path(friend: friend.id), method: :post %></td>    
+      <td><%= link_to "Show", users_show_friend_path(friend_id: friend.id) %></td>    
+      <td><%= link_to "Add to My Friends", users_add_friend_path(friend_id: friend.id), method: :post %></td>    
     </tr>
   <% end %>                         
   </table> 
+  
 <% end %>
 
-<%= link_to "Search Friends", users_search_friend_path %>

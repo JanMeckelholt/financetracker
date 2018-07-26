@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def remove_friend
-		friend = User.where(id: params[:friend])
+		friend = User.where(id: params[:friend_id])
 		user_friend = Friendship.where(user: current_user, friend: friend).first
 		if user_friend.delete
 			flash[:success] = "Friendship deleted"
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
 
 	def add_friend
-		friend = User.find_by_email(params[:friend_email])
+		friend = User.find(params[:friend_id])
 		if friend == current_user
 			flash[:danger] = "You can not add yourself!"
 			redirect_to my_friends_path
@@ -41,14 +41,18 @@ class UsersController < ApplicationController
 
 
 	def show_friend
-		@friend = User.find(params[:friend])
+		@friend = User.find(params[:friend_id])
 	end
 
 
 	def search_friend
 		if params[:search_input].present?
 			@friends = User.search_friends(params[:search_input])
-			if @friends
+			if @friends.include?(current_user)
+				@friends.delete(current_user)
+			end
+
+			if @friends && @friends.size > 0
 				 respond_to do |format|
 		      	format.html
 		        format.js { render partial: 'users/result' }
