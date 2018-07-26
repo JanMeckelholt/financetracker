@@ -7,11 +7,25 @@
   <% end %>
 <% end %>
 
-<% if @friend %>
-	<div class="well results-block">
-	  <strong>Symbol: </strong> <%= @friend.email %>
-	  <strong>Name: </strong> <%= @friend.full_name %>
-	  <strong>Price: </strong> 
-	</div>
-  <%= link_to "Add Person to my Friends", users_add_friend_path(friend_email: @friend.email), method: :post, class: "btn btn-lg btn-success" %>
- <% end %>
+
+
+ <% if @friends  %>
+  <table class="table table-bordered">                         
+    <tr>                          
+      <th scope="col">Name</th>
+      <th scope="col">email</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+    <% @friends.each do |friend| %>      
+    <tr>
+      <td><%= friend.full_name %></td>    
+      <td><%= friend.email %></td>    
+      <td><%= link_to "Show", users_show_friend_path(friend: friend.id) %></td>    
+      <td><%= link_to "Add to My Friends", users_add_friend_path(friend: friend.id), method: :post %></td>    
+    </tr>
+  <% end %>                         
+  </table> 
+<% end %>
+
+<%= link_to "Search Friends", users_search_friend_path %>

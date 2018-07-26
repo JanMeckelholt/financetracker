@@ -46,27 +46,25 @@ class UsersController < ApplicationController
 
 
 	def search_friend
-	  if params[:friend_email].present?
-	    @friend = User.find_by_email(params[:friend_email].downcase)
-	    if @friend
-	      respond_to do |format|
-	      	format.html
-	        format.js { render partial: 'users/result' }
-	      end
-	    else
-	    	respond_to do |format|
-	    		format.html
-	        
-	        format.js { 
-	        	flash.now[:danger] = "E-Mail not found!"
-	        	render partial: 'users/result' 
-	        }
-	  	  end
-	  	end
-	  else
+		if params[:search_input].present?
+			@friends = User.search_friends(params[:search_input])
+			if @friends
+				 respond_to do |format|
+		      	format.html
+		        format.js { render partial: 'users/result' }
+		     end
+		  else
+		  	respond_to do |format|
+		   		format.html
+		      format.js { 
+		       	flash.now[:danger] = "Nothing found!"
+		       	render partial: 'users/result' 
+		        }
+		     end
+		  end
+		else
 	  	respond_to do |format|
-	  		format.html
-	    	
+	  		format.html	
 	    	format.js {
 					flash.now[:danger] = "You have entered an empty search string"
 	    		render  partial: 'users/result' 
